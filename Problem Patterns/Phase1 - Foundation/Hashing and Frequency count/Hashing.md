@@ -27,3 +27,20 @@
 5. What will I derive? `s_count[element] - t_count[element]`
 6. if derived value is `0` for all keys, return True.
 7. if not, return False.
+# Train of thought for 49. Group Anagrams
+1. At each step, what am I finding? (Derived value) I will derive a sorted string for each string.
+2. Do I need to store the string or any extra value? Yes I need to store string and it's corresponding list of strings that are anagrams of each other.
+3. Where do I find? (Key) sorted string.
+4. What will I retrieve? (Value) a list of string.
+5. Now return, values of each key in list format .
+- **Trigger sentence** - when a problem needs me to group items with some common property, but items are not identical - then I need to derive a value that can be a common property and use it as hash key.
+# Train of thought for 347.TopKFrequentElements
+1. At each step, what am I finding? (Derived value) Calculating counts of current element.
+2. Do I need to store extra data or just current element? (extra data too) use hash map.
+3. What do I find? (key) current element.
+4. What I get? (value) count of current element so far.
+	1. if found, increment in existing count.
+	2. if not found, increment by from 0.
+5. Make a tuple of (values, key) and reverse sort them. Now get first K elements of reverse sorted list and return the value at index 1.
+6. Return a list of keys.
+- **Trigger sentence** - after counting, I still need to keep the count and element together but also need to sort by count. therefore, using tuple (count, number) and will reverse sort it.
