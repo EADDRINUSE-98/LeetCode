@@ -44,3 +44,12 @@
 5. Make a tuple of (values, key) and reverse sort them. Now get first K elements of reverse sorted list and return the value at index 1.
 6. Return a list of keys.
 - **Trigger sentence** - after counting, I still need to keep the count and element together but also need to sort by count. therefore, using tuple (count, number) and will reverse sort it.
+# Train of thought for 451.SortCharacterByFrequency
+1. At each step, what do I find? (Derived value) Increase count of current character.
+2. Do I need to store extra values or just the count? (Extra values).
+3. Where do I find it? (Key) Character
+4. What do I get? (Value) count of key.
+5. Now create a list of tuple (count, character) format and reverse sort it.
+6. Now for each tuple in list of tuple, separate count and character, then for count times append that character is sorted_string_list.
+7. then join all elements in sorted_string_list.
+- Trigger - After counting, I still need to know what is the character that has post and least count for that use tuple.
