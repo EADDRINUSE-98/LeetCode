@@ -32,3 +32,39 @@
 	3. else move ptr1 right by 1 step.
 5. return `current_max_water_area`
 6. I'm moving only that ptr that is less because even if I move the ptr with taller height, the limiting reagent of the area calculation will still be the smaller pillar and also moving closer to the smaller pillar will only decrease the area of the container. And if both pillar height is same then I can move whatever ptr, it won't matter at all.
+# Train of thought for 15.3Sum
+1. What do I want to find? (Derived value):
+	1. Either, I can compute `nums[i] + nums[j]` and check if the computed value is in the nums array but the index should not be either i or j.
+	2. Or, I can compute `nums[i] + nums[j] + nums[k]` and check if the value is 0 and i, j, and k are not equal.
+2. We need three pointer for this.
+3. Sort the nums array and sort in nums_sorted
+4. Where should be the ptr1? at the start of the array.
+5. Where should be the ptr2? one step ahead of the ptr2.
+6. Where should be the ptr3? at the end of the array.
+7. Initialize an array threesum_record.
+8. For ptr1 in `range(len(nums_sorted) - 2)`:
+	1. ptr2 should be `ptr1 + 1`.
+	2. ptr3 should `len(nums_sorted) - 1`.
+	3. If `ptr1 > 0` and `nums_sorted[ptr1] == nums_sorted[ptr1 -1]`:
+		1. continue
+	4. While ptr3 > ptr2:
+		1. While ptr3 > ptr2 and `nums_sorted[ptr1] + nums_sorted[ptr2] + nums_sorted[ptr3] != 0`
+			1. While `nums_sorted[ptr1] + nums_sorted[ptr2] + nums_sorted[ptr3] > 0` and `ptr2 < ptr3` :
+				1. Move ptr3 1 step left. Because moving ptr2 to right will only increase the computed value but we want to move our computed value towards 0.
+			2. While `nums_sorted[ptr1] + nums_sorted[ptr2] + nums_sorted[ptr3] < 0` and `ptr2 < ptr3`:
+				1. Move ptr2 1 step right. Because moving ptr3 to left will only decrease the computed value but we want to move our computed value towards 0.
+		2. if `nums_sorted[ptr1] + nums_sorted[ptr2] + nums_sorted[ptr3] == 0` and `ptr2 < ptr3`:
+			1. Put `nums[ptr1]`, `nums[ptr2]`, and `nums[ptr3]` in an array and append that array in `3sum_record`.
+		3. Move ptr2 right by 1 step.
+		4. While `ptr2 > ptr1 + 1` and `nums_sorted[ptr2] == nums_sorted[ptr2 - 1]`:
+			1. Move ptr2 1 step right. Because moving ptr3 to left will only decrease the computed value but we want to move our computed value towards 0.
+		5. Move ptr3 left by 1 step.
+		6. While `ptr3 < len(nums_sorted) - 1` and `nums_sorted[ptr3] == nums_sorted[ptr3 + 1]`:
+			1. Move ptr3 1 step left. Because moving ptr2 to right will only increase the computed value but we want to move our computed value towards 0.
+9. return `3sum_record`
+- Trigger sentences-
+	1. By sorting I can get the duplicate elements together. This way I can skip the duplicate elements easily if I want to avoid duplicate triplet generations.
+	2. At step 8.3, if statement is important to skip duplicate element that are visited by ptr1.
+	3. At step 8.4, ptr3 > ptr2 is important because we don't want to re-scan the already visited elements.
+	4. At 8.4.1, the nested while is ensuring that the correct ptr is moved and there is also a possibility that even if I successfully move ptr3 to lower the sum than 0 and moving ptr2 can still increase the sum back higher to 0. That's why I needed to put this nested while loop.
+	5. At step 8.4.4, the While loop condition sequence is important because, before computing the sum I need to ensure that both of the ptr is within the bounds of nums_sorted array.
