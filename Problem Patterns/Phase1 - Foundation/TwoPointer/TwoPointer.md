@@ -68,3 +68,28 @@
 	3. At step 8.4, ptr3 > ptr2 is important because we don't want to re-scan the already visited elements.
 	4. At 8.4.1, the nested while is ensuring that the correct ptr is moved and there is also a possibility that even if I successfully move ptr3 to lower the sum than 0 and moving ptr2 can still increase the sum back higher to 0. That's why I needed to put this nested while loop.
 	5. At step 8.4.4, the While loop condition sequence is important because, before computing the sum I need to ensure that both of the ptr is within the bounds of nums_sorted array.
+# Train of thought 42.TrappingRainWater
+1. What do I want to find? (Derived value)
+	1. I want to compute how much water sits in holes.
+2. To solve this problem, I would need to do 3 passees.
+3. 1 for moving left to right for finding max right wall for each element.
+4. 2 for moving right to left for finding max left wall for each element.
+5. 3 for computing total trapped water.
+6. initialize max_right_height and max_left_height arrays for storing max right and left wall height for each element.
+7. initialize a total_trapped_water = 0, current_right_max = 0, current_left_max = 0.
+8. for i in range(len(height)):
+	1. append current_left_max in max_left_height.
+	2. current_left_max = max(`height[i]`, current_left_max).
+9. for i in range(-1, -(len(height) + 1),  -1):
+	1. insert from front, current_right_max in max_right_height.
+	2. current_right_max = max(`height[i]`, current_right_max).
+10. for i in range(len(height)):
+	1. if min(`max_left_height[i]`,`max_right_height[i]`) < `height[i]`:
+		1. total_trapped_water += 0
+		2. continue
+	2. total_trapped_water += min(`max_left_height[i]`,`max_right_height[i]`) - `height[i]`
+11. return total_trapped_water
+- Triggers thoughts:
+	1. Why are we finding max right and left wall height for each element?
+		1. Think that between each element, there is a very thin glass wall. Now if we find the area of trapped water within that glass wall and keep on adding it for each element, we can find the trapped water in total.
+	2. At step 10.1, we are ensuring that our so far calculated total trapped water does not decrease because trapped water is trapped forever, it will not decrease ever.
