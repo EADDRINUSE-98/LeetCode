@@ -84,7 +84,7 @@
 	1. insert from front, current_right_max in max_right_height.
 	2. current_right_max = max(`height[i]`, current_right_max).
 10. for i in range(len(height)):
-	1. if min(`max_left_height[i]`,`max_right_height[i]`) < `height[i]`:
+	1. if min(`max_left_height[i]`,`max_right_height[i]`) <=`height[i]`:
 		1. total_trapped_water += 0
 		2. continue
 	2. total_trapped_water += min(`max_left_height[i]`,`max_right_height[i]`) - `height[i]`
