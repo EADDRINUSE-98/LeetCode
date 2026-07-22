@@ -56,10 +56,10 @@
 		2. if `nums_sorted[ptr1] + nums_sorted[ptr2] + nums_sorted[ptr3] == 0` and `ptr2 < ptr3`:
 			1. Put `nums[ptr1]`, `nums[ptr2]`, and `nums[ptr3]` in an array and append that array in `3sum_record`.
 		3. Move ptr2 right by 1 step.
-		4. While `ptr2 > ptr1 + 1` and `nums_sorted[ptr2] == nums_sorted[ptr2 - 1]`:
+		4. While `ptr3 > ptr2` and `nums_sorted[ptr2] == nums_sorted[ptr2 - 1]`:
 			1. Move ptr2 1 step right. Because moving ptr3 to left will only decrease the computed value but we want to move our computed value towards 0.
 		5. Move ptr3 left by 1 step.
-		6. While `ptr3 < len(nums_sorted) - 1` and `nums_sorted[ptr3] == nums_sorted[ptr3 + 1]`:
+		6. While `ptr3 > ptr2` and `nums_sorted[ptr3] == nums_sorted[ptr3 + 1]`:
 			1. Move ptr3 1 step left. Because moving ptr2 to right will only increase the computed value but we want to move our computed value towards 0.
 9. return `3sum_record`
 - Trigger sentences-
