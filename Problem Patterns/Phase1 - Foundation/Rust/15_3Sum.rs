@@ -3,6 +3,9 @@ struct Solution;
 
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        if nums.len() < 3 {
+            return vec![];
+        }
         let mut nums: Vec<i32> = nums;
         nums.sort_unstable();
         let mut ptr1: usize;
@@ -45,4 +48,5 @@ fn main() {
     println!("{:?}", Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]));
     println!("{:?}", Solution::three_sum(vec![0, 1, 1]));
     println!("{:?}", Solution::three_sum(vec![0, 0, 0]));
+    println!("{:?}", Solution::three_sum(vec![]));
 }
