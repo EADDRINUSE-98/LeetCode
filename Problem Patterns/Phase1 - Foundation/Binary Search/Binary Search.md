@@ -29,3 +29,7 @@
 		1. break
 	5. move high to mid - 1.
 5. return low
+# Train of thought for 34. Find First and Last Position of Element in Sorted Array
+1. use 2 binary search.
+2. binary search one will strictly find the leftmost range on target
+3. binary search two will strictly find the rightmost range of target.
