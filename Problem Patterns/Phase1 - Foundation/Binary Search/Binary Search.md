@@ -44,10 +44,20 @@
 4. right_ptr = n - 1
 5. While left_ptr < right_ptr:
 	1. calculate mid = (left_ptr + right_ptr) // 2
-	2. if `nums[mid]` = `nums[right_ptr]`:
+	2. if `nums[mid]` == `nums[right_ptr]`:
 		1. return `nums[mid]`
 	3. if `nums[mid]` < `nums[right_ptr]`:
 		1. right_ptr = mid
 		2. continue
 	4. left_ptr = mid + 1
 6. return `nums[left_ptr]`
+# Train of thoughts 875. Koko Eating Bananas
+1. If koko has chosen a banana-per-hour speed, can she change her speed? No
+2. Can she move on to next pile if she finishes early before whole hour is completed? No
+3. If koko has decided a speed `k` and she has pile of `p` bananas, in how many hours can she finish? ceil number of k/p
+4. Since, koko has multiple piles to finish, find and as I compute the time for each pile, I keep adding it to a variable so I can compare it with the time limit koko has.
+5. Once I have the total time, I can check if koko has run out of find or not. 
+6. If koko has run out of time then koko needs to be faster
+7. If koko has still time to spare then koko can be slower.
+8. Koko can eat with speed of  maximum of max of piles and minimum of 1.
+9. 
