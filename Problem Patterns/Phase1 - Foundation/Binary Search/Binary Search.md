@@ -60,4 +60,3 @@
 6. If koko has run out of time then koko needs to be faster
 7. If koko has still time to spare then koko can be slower.
 8. Koko can eat with speed of  maximum of max of piles and minimum of 1.
-9. 
